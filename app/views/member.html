@@ -1,0 +1,43 @@
+<div ng-controller="fireBaseCtrl">
+        <form name="profileForm" novalidate>
+                <div>
+                        <label>search</label>
+                        <input type="text" placeholder="any keywords" ng-model="query" />
+                        <hr/>
+                        <table class="table table-striped table-borderd">
+                                <tr>
+                                        <th>name</th>
+                                        <th>email</th>
+                                        <th></th>
+                                </tr>
+                                <tr ng-repeat="info in data.profiles | filter: query">
+                                        <td>{{info.name}}</td>
+                                        <td>{{info.email}}</td>
+                                        <td>
+                                                <button ng-click="delete(info)" class="btn btn-primary">
+                                                        Delete</button>
+
+                                        </td>
+                                </tr>
+                        </table>
+                </div>
+
+                <div class="well">
+                        <h3>New Profile</h3>
+                        <div class="form-group">
+                                <label>Name:</label>
+                                <input name="name" class="form-control" ng-model="data.newProfile.name" required />
+                        </div>
+
+                        <div class="form-group">
+                                <label>Email</label>
+                                <input name="email" type="email" class="form-control" ng-model="data.newProfile.email" required />
+                        </div>
+                </div>
+
+                <div class="text-center">
+                        <button ng-disabled="profileForm.$invalid" ng-click="save(data.newProfile)" class="btn btn-primary">
+                                Save</button>
+                </div>
+        </form>
+</div>

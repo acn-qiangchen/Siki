@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="sampleModule">
+
+<head>
+    <title>SIKI Memeber Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="angular.min.js"></script>
+    <script src="ngmodules/angular-route.min.js"></script>
+    <script src="ngmodules/angular-resource.min.js"></script>
+    <script src="ngmodules/angular-datepicker.js"></script>
+    <script src="ngmodules/ui-bootstrap-tpls.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="css/angular-datepicker.css" rel="stylesheet" />
+    <script>
+        angular.module("sampleModule", ["ngRoute","firebase","720kb.datepicker", "ui.bootstrap"])
+        .config(function($routeProvider){
+            $routeProvider.when("/login", {
+                templateUrl : "/views/adminLogin.html"
+            });
+            
+            $routeProvider.when("/member", {
+                templateUrl : "/views/member.html"
+            });
+            
+            $routeProvider.when("/schedule", {
+                templateUrl : "/views/schedule.html"
+            });
+            
+            $routeProvider.otherwise("/login", {
+                templateUrl : "/login"
+            });
+        });
+    </script>
+    <script src="controllers/sampleCtrl.js"></script>
+    <script src="ngmodules/firebase.js"></script>
+    <script src="ngmodules/angularfire.min.js"></script>
+</head>
+
+<body ng-controller="fireBaseCtrl">
+    <div class="container">
+        <div>
+            <div class="navbar navbar-inverse" />
+            <ul class="nav nav-pills">
+                <li role="presentation"><a href="#/member">Member</a></li>
+                <li role="presentation"><a href="#/schedule">Schedule</a></li>
+            </ul>
+            <!--            <a class="navbar-brand" href="#">SIKI Member Management</a> -->
+        </div>
+        <ng-view/>
+    </div>
+</body>
+
+</html>

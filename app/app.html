@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="appModule">
+
+<head>
+    <title>SIKI Memeber Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="angular.min.js"></script>
+    <script src="ngmodules/angular-route.min.js"></script>
+    <script src="ngmodules/angular-resource.min.js"></script>
+    <script src="ngmodules/angular-datepicker.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="css/angular-datepicker.css" rel="stylesheet" />
+    <script>
+        angular.module("appModule",["ngResource","crud","720kb.datepicker", "ui.bootstrap"]);
+    </script>
+    <script src="components/crud.js"></script>
+    <script src="controllers/scheduleCtrl.js"></script>
+</head>
+
+<body ng-controller="scheduleCtrl">
+    <div class="container">
+        <div>
+            <div class="navbar navbar-inverse" />
+            <a class="navbar-brand" href="#">SIKI Member Management</a>
+        </div>
+        <form class="well">
+            <div class="form-group">
+                <label>Date</label>
+                <!--<input type="text"  class="form-control" name="date" ng-model="data.newSchedule.date"/>-->
+                <datepicker date-format="yyyy-MM-dd">
+                    <input ng-model="data.newSchedule.date" type="text"  class="form-control"/>
+                </datepicker>
+            </div>
+            <div class="form-group">
+                <label>TeamName</label>
+                <input type="text" class="form-control" name="teamname" ng-model="data.newSchedule.teamname" />
+            </div>
+            <div class="form-group">
+                <label>Tanto</label>
+                <input type="text" class="form-control" name="tanto" ng-model="data.newSchedule.tanto" />
+            </div>
+            <input type="hidden" ng-model="data.newSchedule.id" />
+            <input type="button" value="Save" ng-click="save(data.newSchedule)" class="btn btn-primary" />
+        </form>
+        <hr/>
+        <table class="table table-striped table-borderd">
+            <tr>
+                <th>No</th>
+                <th>date</th>
+                <th>teamName</th>
+                <th>tanto</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="info in data.scheduleList">
+                <td>{{$index}}</td>
+                <td>{{info.date}}</td>
+                <td>{{info.teamname}}</td>
+                <td>{{info.tanto}}</td>
+                <td>
+                    <a href="javascript:void(0)" ng-click="edit(info.id)">edit</a> |
+                    <a href="javascript:void(0)" ng-click="delete(info)">delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

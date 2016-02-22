@@ -1,0 +1,29 @@
+{
+	"type": "Collection",
+	"properties": {
+		"date": {
+			"name": "date",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "date",
+			"order": 0
+		},
+		"teamname": {
+			"name": "teamname",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "teamname",
+			"order": 1
+		},
+		"tanto": {
+			"name": "tanto",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "tanto",
+			"order": 2
+		}
+	}
+}

@@ -1,0 +1,42 @@
+<div ng-controller="scheduleCtrl">
+    <form class="well">
+        <div class="form-group">
+            <label>Date</label>
+            <!--<input type="text"  class="form-control" name="date" ng-model="data.newSchedule.date"/>-->
+            <datepicker date-format="yyyy-MM-dd">
+                <input ng-model="data.newSchedule.date" type="text" class="form-control" />
+            </datepicker>
+        </div>
+        <div class="form-group">
+            <label>TeamName</label>
+            <input type="text" class="form-control" name="teamname" ng-model="data.newSchedule.teamname" />
+        </div>
+        <div class="form-group">
+            <label>Tanto</label>
+            <input type="text" class="form-control" name="tanto" ng-model="data.newSchedule.tanto" 
+            typeahead="c.name for c in data.members| filter:$viewValue | limitTo:10"
+            typeahead-min-length='1' 
+            typeahead-on-select='onSelectPart($item, $model, $label)' />
+        </div>
+        <input type="button" value="Save" ng-click="save(data.newSchedule)" class="btn btn-primary" />
+    </form>
+    <table class="table table-striped table-borderd">
+        <tr>
+            <th>No</th>
+            <th>date</th>
+            <th>teamName</th>
+            <th>tanto</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat="info in data.scheduleList">
+            <td>{{$index+1}}</td>
+            <td>{{info.date}}</td>
+            <td>{{info.teamname}}</td>
+            <td>{{info.tanto}}</td>
+            <td>
+                <a href="javascript:void(0)" ng-click="edit(info)">edit</a> |
+                <a href="javascript:void(0)" ng-click="delete(info)">delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
